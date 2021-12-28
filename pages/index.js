@@ -6,7 +6,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 // Max post to query per page
 const LIMIT = 1;
-import toast from "react-hot-toast";
 
 export async function getServerSideProps(context) {
 	try {
@@ -18,13 +17,16 @@ export async function getServerSideProps(context) {
 
 		const posts = (await postsQuery.get()).docs.map(postToJSON);
 		console.log("server side posts", posts);
+		return {
+			props: { posts }, // will be passed to the page component as props
+		};
 	} catch (err) {
 		console.log("ssr error: ", err.message);
 		toast.error(err.message);
+		return {
+			props: {},
+		};
 	}
-	return {
-		props: { posts }, // will be passed to the page component as props
-	};
 }
 
 export default function Home(props) {

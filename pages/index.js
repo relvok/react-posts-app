@@ -3,20 +3,25 @@ import Loader from "../components/Loader";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 import Metatags from "../components/Metatags";
 import { useState } from "react";
-
+import toast from "react-hot-toast";
 // Max post to query per page
 const LIMIT = 1;
 import toast from "react-hot-toast";
 
 export async function getServerSideProps(context) {
-	const postsQuery = firestore
-		.collectionGroup("posts")
-		.where("published", "==", true)
-		.orderBy("createdAt", "desc")
-		.limit(LIMIT);
+	try {
+		const postsQuery = firestore
+			.collectionGroup("posts")
+			.where("published", "==", true)
+			.orderBy("createdAt", "desc")
+			.limit(LIMIT);
 
-	const posts = (await postsQuery.get()).docs.map(postToJSON);
-	console.log("server side posts", posts);
+		const posts = (await postsQuery.get()).docs.map(postToJSON);
+		console.log("server side posts", posts);
+	} catch (err) {
+		console.log("ssr error: ", err.message);
+		toast.error(err.message);
+	}
 	return {
 		props: { posts }, // will be passed to the page component as props
 	};
@@ -57,7 +62,10 @@ export default function Home(props) {
 	};
 	return (
 		<main>
-			<Metatags title="admin page" />
+			<Metatags
+				title="Home Page"
+				description="Get the latest posts on our site"
+			/>
 
 			<PostFeed posts={posts} />
 

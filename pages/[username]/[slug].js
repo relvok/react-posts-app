@@ -59,18 +59,18 @@ export default function Post(props) {
 			</section>
 
 			<aside className="card">
-				<p>
-					<strong>{post.heartCount || 0} 🤍</strong>
-				</p>
-				<AuthCheck
-					fallback={
-						<Link href="/enter">
-							<button>💗 Sign Up</button>
-						</Link>
-					}
-				>
-					<HeartButton postRef={postRef} postDoc={post} />
-				</AuthCheck>
+				<div>
+					<AuthCheck
+						fallback={
+							<Link href="/enter">
+								<button>💗 Sign Up</button>
+							</Link>
+						}
+					>
+						<HeartButton postRef={postRef} postDoc={post} />
+					</AuthCheck>
+					<strong>{post.heartCount || 0}</strong>
+				</div>
 			</aside>
 		</main>
 	);

@@ -211,6 +211,23 @@ button.btn-logo {
 	background: var(--color-blue);
 }
 
+/* flex */
+.flex {
+	display: flex;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.center {
+	align-items: center;
+}
+
 /* Loader */
 
 .loader {

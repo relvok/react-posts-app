@@ -82,9 +82,6 @@ export default function AccountMenu() {
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			>
 				<MenuItem>
-					<Avatar src={user?.photoURL} /> Profile
-				</MenuItem>
-				<MenuItem>
 					<Avatar /> My account
 				</MenuItem>
 				<Divider />

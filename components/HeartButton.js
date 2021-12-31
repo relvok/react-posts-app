@@ -3,7 +3,7 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // Allows user to heart or like a post
-export default function Heart({ postRef, postDoc }) {
+export default function HeartButton({ postRef, postDoc }) {
 	// Listen to heart document for currently logged in user
 	const heartRef = postRef.collection("hearts").doc(auth.currentUser.uid);
 	const [heartDoc] = useDocumentData(heartRef);
@@ -34,14 +34,14 @@ export default function Heart({ postRef, postDoc }) {
 
 	return heartDoc ? (
 		<FavoriteIcon
-			style={{ color: "red", cursor: "pointer" }}
+			style={{ color: "red", cursor: "pointer", marginRight: 5 }}
 			onClick={removeHeart}
 		>
 			💔
 		</FavoriteIcon>
 	) : (
 		<FavoriteBorderIcon
-			style={{ color: "red", cursor: "pointer" }}
+			style={{ color: "red", cursor: "pointer", marginRight: 5 }}
 			onClick={addHeart}
 		>
 			💗

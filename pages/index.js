@@ -17,7 +17,6 @@ export async function getServerSideProps(context) {
 			.limit(LIMIT);
 
 		const posts = (await postsQuery.get()).docs.map(postToJSON);
-		console.log("server side posts", posts);
 		return {
 			props: { posts }, // will be passed to the page component as props
 		};
@@ -32,7 +31,6 @@ export async function getServerSideProps(context) {
 
 export default function Home(props) {
 	const [posts, setPosts] = useState(props.posts);
-	console.log("props.posts", props.posts);
 	const [loading, setLoading] = useState(false);
 
 	const [postsEnd, setPostsEnd] = useState(false);
@@ -61,7 +59,6 @@ export default function Home(props) {
 		if (newPosts.length < LIMIT) {
 			setPostsEnd(true);
 		}
-		console.log("posts in home function", posts);
 	};
 	return (
 		<main>

@@ -21,7 +21,7 @@ export default function PostContent({ post, postRef }) {
 				on {createdAt.toISOString()}
 			</span>
 			<ReactMarkdown>{post?.content}</ReactMarkdown>
-			<div class="flex center">
+			<div className="flex center">
 				<AuthCheck
 					fallback={
 						<Link href="/enter">
